@@ -828,6 +828,8 @@ Partial Public Class DataSet1
         
         Private columnFIRMA_KODU As Global.System.Data.DataColumn
         
+        Private columnGrup As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub New()
@@ -952,6 +954,14 @@ Partial Public Class DataSet1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property GrupColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGrup
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -988,9 +998,9 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddSIPARISRow(ByVal SIP_NO As String, ByVal MUS_SIP_NO As String, ByVal STK_KODU As String, ByVal MUS_URUN_KODU As String, ByVal TED_1 As String, ByVal TED_2 As String, ByVal SIP_ADEDI As Decimal, ByVal SEV_TAR As Date, ByVal KAPANDI As Boolean, ByVal Kürsör_Kaplama As String, ByVal FIRMA_KODU As String) As SIPARISRow
+        Public Overloads Function AddSIPARISRow(ByVal SIP_NO As String, ByVal MUS_SIP_NO As String, ByVal STK_KODU As String, ByVal MUS_URUN_KODU As String, ByVal TED_1 As String, ByVal TED_2 As String, ByVal SIP_ADEDI As Decimal, ByVal SEV_TAR As Date, ByVal KAPANDI As Boolean, ByVal Kürsör_Kaplama As String, ByVal FIRMA_KODU As String, ByVal Grup As String) As SIPARISRow
             Dim rowSIPARISRow As SIPARISRow = CType(Me.NewRow,SIPARISRow)
-            Dim columnValuesArray() As Object = New Object() {SIP_NO, MUS_SIP_NO, STK_KODU, MUS_URUN_KODU, TED_1, TED_2, SIP_ADEDI, SEV_TAR, KAPANDI, Kürsör_Kaplama, FIRMA_KODU}
+            Dim columnValuesArray() As Object = New Object() {SIP_NO, MUS_SIP_NO, STK_KODU, MUS_URUN_KODU, TED_1, TED_2, SIP_ADEDI, SEV_TAR, KAPANDI, Kürsör_Kaplama, FIRMA_KODU, Grup}
             rowSIPARISRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowSIPARISRow)
             Return rowSIPARISRow
@@ -1024,6 +1034,7 @@ Partial Public Class DataSet1
             Me.columnKAPANDI = MyBase.Columns("KAPANDI")
             Me.columnKürsör_Kaplama = MyBase.Columns("Kürsör Kaplama")
             Me.columnFIRMA_KODU = MyBase.Columns("FIRMA_KODU")
+            Me.columnGrup = MyBase.Columns("Grup")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1051,6 +1062,8 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columnKürsör_Kaplama)
             Me.columnFIRMA_KODU = New Global.System.Data.DataColumn("FIRMA_KODU", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFIRMA_KODU)
+            Me.columnGrup = New Global.System.Data.DataColumn("Grup", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGrup)
             Me.columnSIP_NO.AllowDBNull = false
             Me.columnSIP_NO.MaxLength = 15
             Me.columnMUS_SIP_NO.MaxLength = 50
@@ -1065,6 +1078,8 @@ Partial Public Class DataSet1
             Me.columnKürsör_Kaplama.MaxLength = 2000000000
             Me.columnFIRMA_KODU.AllowDBNull = false
             Me.columnFIRMA_KODU.MaxLength = 20
+            Me.columnGrup.ReadOnly = true
+            Me.columnGrup.MaxLength = 9
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2508,6 +2523,21 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Grup() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableSIPARIS.GrupColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Grup' in table 'SIPARIS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableSIPARIS.GrupColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsMUS_SIP_NONull() As Boolean
             Return Me.IsNull(Me.tableSIPARIS.MUS_SIP_NOColumn)
         End Function
@@ -2564,6 +2594,18 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetKürsör_KaplamaNull()
             Me(Me.tableSIPARIS.Kürsör_KaplamaColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsGrupNull() As Boolean
+            Return Me.IsNull(Me.tableSIPARIS.GrupColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetGrupNull()
+            Me(Me.tableSIPARIS.GrupColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -3339,6 +3381,7 @@ Namespace DataSet1TableAdapters
             tableMapping.ColumnMappings.Add("KAPANDI", "KAPANDI")
             tableMapping.ColumnMappings.Add("Kürsör Kaplama", "Kürsör Kaplama")
             tableMapping.ColumnMappings.Add("FIRMA_KODU", "FIRMA_KODU")
+            tableMapping.ColumnMappings.Add("Grup", "Grup")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -3356,17 +3399,23 @@ Namespace DataSet1TableAdapters
             Me._commandCollection(0) = New Global.System.Data.Odbc.OdbcCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        DBA.SIPARIS.SIP_NO, DBA.FIRMA.FIRMA_KODU, DBA.SIPARIS.MUS_SIP_NO, D"& _ 
-                "BA.STK_TANIM.STK_KODU, DBA.SIP_URUN.MUS_URUN_KODU, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DB"& _ 
-                "A.SIP_ADET.TED_1, DBA.SIP_ADET.TED_2, DBA.SIP_ADET.SIP_ADEDI, DBA.SIP_URUN.SEV_T"& _ 
-                "AR, DBA.SIP_URUN.KAPANDI, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DBA.SIP_EK_BILGI.NOTLAR AS "& _ 
-                """Kürsör Kaplama"""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            DBA.SIPARIS, DBA.SIP_ADET, DBA.STK_TANIM, DBA."& _ 
-                "FIRMA, { oj DBA.SIP_URUN LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DBA.SIP_EK_BI"& _ 
-                "LGI ON DBA.SIP_URUN.URUN_SIRA_NO = DBA.SIP_EK_BILGI.URUN_SIRA_NO }"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
-                " DBA.SIPARIS.SIP_ID = DBA.SIP_URUN.SIP_ID AND DBA.SIP_URUN.URUN_SIRA_NO = DBA.SI"& _ 
-                "P_ADET.URUN_SIRA_NO AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DBA.SIP_URUN.URUN_ID = DBA.ST"& _ 
-                "K_TANIM.STK_ID AND DBA.SIPARIS.MUS_KODU = DBA.FIRMA.FIRMA_ID AND (DBA.SIP_URUN.K"& _ 
-                "APANDI = ?) AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (DBA.SIP_EK_BILGI.SATIR_SIRA IS NULL "& _ 
-                "OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DBA.SIP_EK_BILGI.SATIR_SIRA = 2)"
+                "BA.STK_TANIM.STK_KODU, DBA.SIP_URUN.MUS_URUN_KODU, DBA.SIP_ADET.TED_1, DBA.SIP_A"& _ 
+                "DET.TED_2, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DBA.SIP_ADET.SIP_ADEDI, DBA.SIP_URUN.SEV_T"& _ 
+                "AR, DBA.SIP_URUN.KAPANDI, DBA.SIP_EK_BILGI.NOTLAR AS ""Kürsör Kaplama"", "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"CASE "& _ 
+                "LEFT(DBA.STK_TANIM.STK_KODU, 3) "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'FRT' THEN 'POLYESTER'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'FTR' THEN"& _ 
+                " 'METAL'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'FT8' THEN 'METAL'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'FT5' THEN 'METAL'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'FD6' THEN 'K"& _ 
+                "EMİK'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'FD3' THEN 'KEMİK'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'FD1' THEN 'KEMİK'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'PGM' THEN 'TE.P"& _ 
+                "D'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'PGD' THEN 'TE.PD'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'PGN' THEN 'TE.PD'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'PGP' THEN 'TE.PD'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"W"& _ 
+                "HEN 'PE-' THEN 'TE.PD'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'PEA' THEN 'TE.PD'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'PP-' THEN 'TE.PD'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN '"& _ 
+                "PS-' THEN 'TE.PD'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'PBY' THEN 'TD.PD'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHEN 'POT' THEN 'TD.PD'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ELSE 'D"& _ 
+                "İĞER'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"END AS Grup"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            DBA.SIPARIS, DBA.SIP_ADET, DBA.STK_TANIM"& _ 
+                ", DBA.FIRMA, { oj DBA.SIP_URUN LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DBA.SIP"& _ 
+                "_EK_BILGI ON DBA.SIP_URUN.URUN_SIRA_NO = DBA.SIP_EK_BILGI.URUN_SIRA_NO }"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE "& _ 
+                "       DBA.SIPARIS.SIP_ID = DBA.SIP_URUN.SIP_ID AND DBA.SIP_URUN.URUN_SIRA_NO = "& _ 
+                "DBA.SIP_ADET.URUN_SIRA_NO AND DBA.SIP_URUN.URUN_ID = DBA.STK_TANIM.STK_ID AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "                         DBA.SIPARIS.MUS_KODU = DBA.FIRMA.FIRMA_ID AND (DBA.SIP_"& _ 
+                "URUN.KAPANDI = ?) AND (DBA.SIP_EK_BILGI.SATIR_SIRA IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                 "& _ 
+                "        DBA.SIP_EK_BILGI.SATIR_SIRA = 2)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("KAPANDI", Global.System.Data.Odbc.OdbcType.Bit, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "KAPANDI", Global.System.Data.DataRowVersion.Current, false, Nothing))
         End Sub

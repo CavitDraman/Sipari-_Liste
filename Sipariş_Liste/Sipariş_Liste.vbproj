@@ -76,6 +76,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BoyutDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="BoyutDataSet.vb">
+      <DependentUpon>BoyutDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBol.Designer.vb">
+      <DependentUpon>DialogBol.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBol.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +116,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DialogBol.resx">
+      <DependentUpon>DialogBol.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>

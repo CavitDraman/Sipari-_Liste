@@ -32,7 +32,8 @@
     End Sub
 
     'Excel
-    Private Sub ExceleVerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExceleVerToolStripMenuItem.Click
+    Private Sub ExceleVerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExceleVerToolStripMenuItem.Click,
+                                                                                           ExceleVerToolStripMenuItem1.Click
 
         Dim Excel As Object
         Dim WBook As Object
@@ -73,22 +74,24 @@
 
             Dim c As Integer = 1
 
-            For Each Cl As DataGridViewColumn In DataGridView1.Columns
-                WSheet.Cells(RwNum, c) = Cl.HeaderText
-                c += 1
+            For Each Cl As DataGridViewColumn In DataGridView2.Columns
+                If Cl.Visible Then
+                    WSheet.Cells(RwNum, c) = Cl.HeaderText
+                    c += 1
+                End If
             Next
 
             RwNum += 1
 
-            For Each Rw As DataGridViewRow In DataGridView1.Rows
-                If Rw.Cells("Secim").Value Then
-                    c = 1
-                    For Each Cell As DataGridViewCell In Rw.Cells
-                        WSheet.Cells(RwNum, c) = Cell.Value '.ToString.Trim
-                        c += 1
-                    Next
-                    RwNum += 1
-                End If
+            For Each Rw As DataGridViewRow In DataGridView2.Rows
+                'If Rw.Cells("Secim").Value Then
+                c = 1
+                For Each Cell As DataGridViewCell In Rw.Cells
+                    WSheet.Cells(RwNum, c) = Cell.Value '.ToString.Trim
+                    c += 1
+                Next
+                RwNum += 1
+                'End If
             Next
 
             WSheet.Columns("A:O").EntireColumn.AutoFit()
@@ -151,24 +154,124 @@
     Private Sub Button_GrHesap_Click(sender As Object, e As EventArgs) Handles Button_GrHesap.Click
 
         For Each DRow As DataGridViewRow In DataGridView1.Rows
+            If DRow.Cells("Secim").Value Then
 
-            Dim StkKod As String = DRow.Cells("STK_KODU").Value
-            Dim Msg As String = ""
+                Dim StkKod As String = DRow.Cells("STK_KODU").Value
+                Dim Msg As String = ""
 
-            Try
-                Dim Boy As Single = IIf(IsNumeric(DRow.Cells("TED_1").Value), DRow.Cells("TED_1").Value, 0)
+                Try
+                    Dim Boy As Single = IIf(IsNumeric(DRow.Cells("TED_1").Value), DRow.Cells("TED_1").Value, 0)
 
-                Dim BrGr As Single = Ağırlık(StkKod, Boy, Msg)
+                    Dim BrGr As Single = Ağırlık(StkKod, Boy, Msg)
 
-                DRow.Cells("BrGr").Value = BrGr
-                DRow.Cells("ToplamKg").Value = BrGr * DRow.Cells("SIP_ADEDI").Value / 1000
+                    DRow.Cells("BrGr").Value = BrGr
+                    DRow.Cells("ToplamKg").Value = BrGr * DRow.Cells("SIP_ADEDI").Value / 1000
 
-            Catch ex As Exception
+                Catch ex As Exception
 
-                DRow.Cells("BrGr").Value = Msg
+                    DRow.Cells("BrGr").Value = Msg
 
-            End Try
+                End Try
+            End If
         Next
 
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            For Each Rw As DataGridViewRow In DataGridView1.Rows
+                If Rw.Cells("Secim").Value Then
+                    DataGridView2.Rows.Add(
+                        Rw.Cells("MUS_SIP_NO").Value,
+                        Rw.Cells("MUS_URUN_KODU").Value,
+                        Rw.Cells("KRS_KAP").Value,
+                        Rw.Cells("TED_1").Value,
+                        Rw.Cells("TED_2").Value,
+                        Rw.Cells("SIP_ADEDI").Value,
+                        Rw.Cells("ToplamKg").Value,
+                        "",
+                        Rw.Cells("BrGr").Value)
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub ListedenKaldırToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListedenKaldırToolStripMenuItem.Click
+        Try
+            For Each RW In DataGridView2.SelectedRows
+                DataGridView2.Rows.Remove(RW)
+            Next
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub KoliNoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles KoliNoToolStripMenuItem.Click
+
+        Dim MaxKg As Single = InputBox("Maximun Koli Ağırlığı", "Ağırlık Limitini Girin", 25)
+        Dim ToplKg As Single = 0
+        Dim KoliNo As Integer = 1
+
+        If MaxKg = 0 Then Exit Sub
+
+        Try
+            For Each RW As DataGridViewRow In DataGridView2.Rows
+                Dim Kg As Single = RW.Cells("Kg").Value
+
+                If (ToplKg + Kg) > MaxKg Then
+                    KoliNo += 1
+                    ToplKg = 0
+                Else
+                    ToplKg += Kg
+                End If
+
+                RW.Cells("KoliNo").Value = KoliNo
+            Next
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub TemizleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TemizleToolStripMenuItem.Click
+        DataGridView2.Rows.Clear()
+    End Sub
+    Private Sub BölToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BölToolStripMenuItem.Click
+        Try
+            If DataGridView2.SelectedRows.Count > 0 Then
+
+                Dim RW As DataGridViewRow = DataGridView2.SelectedRows(0)
+
+                With DialogBol
+                    .Adet = RW.Cells("Adet").Value
+                    .BrGr = RW.Cells("BirimGr").Value
+                    .Urun = RW.Cells("MustUrunKod").Value & " / " & RW.Cells("Adet").Value & " Adet"
+
+                    If .ShowDialog() = DialogResult.OK Then
+                        For Each NRow As DataRow In .Res.Rows
+                            DataGridView2.Rows.Add(
+                                    RW.Cells("MustSıpNo").Value,
+                                    RW.Cells("MustUrunKod").Value,
+                                    RW.Cells("KurKapl").Value,
+                                    RW.Cells("Ted1").Value,
+                                    RW.Cells("Ted2").Value,
+                                    NRow("Adet"),
+                                    NRow("Kg"),
+                                    "",
+                                    RW.Cells("BirimGr").Value)
+                        Next
+
+                        DataGridView2.Rows.Remove(RW)
+
+                    End If
+
+                End With
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        End Try
     End Sub
 End Class
