@@ -114,7 +114,6 @@
 
     Private Sub MusteriComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MusteriComboBox.SelectedIndexChanged, CheckBox1.CheckedChanged
         Try
-            'Me.FIRMATableAdapter.Fill(DataSet1.FIRMA, False)
             Me.SIPARISTableAdapter.FillBy_Firma(Me.DataSet1.SIPARIS, Not CheckBox1.Checked, MusteriComboBox.Text)
             Filtreleme(Nothing, e)
         Catch ex As Exception

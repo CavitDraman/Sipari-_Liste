@@ -175,7 +175,7 @@
             Dim Rw As DataSet1.ALTERNATIF_BIRIMRow = AltBrTable.FindBySTK_IDBIRIM(StkId, "KG")
             Select Case Rw.CEV_ISLEMI
                 Case 1
-                    Gr = Rw.CEV_KATSAYI
+                    Gr = Rw.CEV_KATSAYI * 1000
                 Case 2
                     Gr = 1000 / Rw.CEV_KATSAYI
             End Select
@@ -213,7 +213,6 @@
         Dim kur2Gr As Single
 
         Try
-
 
             If KodGrupları.FerKod <> "" Then
                 Dim FerBolumleri As New FerKodBolum
