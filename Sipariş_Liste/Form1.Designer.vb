@@ -23,6 +23,10 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -30,8 +34,6 @@ Partial Class Form1
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox_Firma = New System.Windows.Forms.CheckBox()
-        Me.TextBox_Firma = New System.Windows.Forms.TextBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.DosyaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BoyutSisKullanıcıToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -57,28 +59,35 @@ Partial Class Form1
         Me.Grup = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.SIPARISBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataSet1 = New Sipariş_Liste.DataSet1()
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ListedenKaldırToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TemizleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.BölToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KoliNoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.ExceleVerToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.KoliDataGridView = New System.Windows.Forms.DataGridView()
+        Me.Koli = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Kilo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.FIRMABindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.FIRMATableAdapter = New Sipariş_Liste.DataSet1TableAdapters.FIRMATableAdapter()
         Me.SIPARISTableAdapter = New Sipariş_Liste.DataSet1TableAdapters.SIPARISTableAdapter()
-        Me.MustSıpNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MustUrunKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MusteriComboBox = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.SIPNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StkKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KurKapl = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MustUrunKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ted1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ted2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Adet = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Kg = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KoliNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BirimGr = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BölToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -87,8 +96,13 @@ Partial Class Form1
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SIPARISBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2.Panel1.SuspendLayout()
+        Me.SplitContainer2.Panel2.SuspendLayout()
+        Me.SplitContainer2.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
+        CType(Me.KoliDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FIRMABindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -97,7 +111,7 @@ Partial Class Form1
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.Checked = True
         Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox1.Location = New System.Drawing.Point(544, 60)
+        Me.CheckBox1.Location = New System.Drawing.Point(327, 34)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(92, 17)
         Me.CheckBox1.TabIndex = 3
@@ -141,29 +155,12 @@ Partial Class Form1
         'CheckBox3
         '
         Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Location = New System.Drawing.Point(708, 60)
+        Me.CheckBox3.Location = New System.Drawing.Point(546, 60)
         Me.CheckBox3.Name = "CheckBox3"
         Me.CheckBox3.Size = New System.Drawing.Size(83, 17)
         Me.CheckBox3.TabIndex = 8
         Me.CheckBox3.Text = "Hepsini Seç"
         Me.CheckBox3.UseVisualStyleBackColor = True
-        '
-        'CheckBox_Firma
-        '
-        Me.CheckBox_Firma.AutoSize = True
-        Me.CheckBox_Firma.Location = New System.Drawing.Point(19, 36)
-        Me.CheckBox_Firma.Name = "CheckBox_Firma"
-        Me.CheckBox_Firma.Size = New System.Drawing.Size(60, 17)
-        Me.CheckBox_Firma.TabIndex = 9
-        Me.CheckBox_Firma.Text = "Müşteri"
-        Me.CheckBox_Firma.UseVisualStyleBackColor = True
-        '
-        'TextBox_Firma
-        '
-        Me.TextBox_Firma.Location = New System.Drawing.Point(85, 33)
-        Me.TextBox_Firma.Name = "TextBox_Firma"
-        Me.TextBox_Firma.Size = New System.Drawing.Size(256, 20)
-        Me.TextBox_Firma.TabIndex = 10
         '
         'MenuStrip1
         '
@@ -229,7 +226,7 @@ Partial Class Form1
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView2)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.SplitContainer2)
         Me.SplitContainer1.Size = New System.Drawing.Size(999, 324)
         Me.SplitContainer1.SplitterDistance = 135
         Me.SplitContainer1.TabIndex = 13
@@ -239,10 +236,12 @@ Partial Class Form1
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
         Me.DataGridView1.AutoGenerateColumns = False
+        Me.DataGridView1.BackgroundColor = System.Drawing.SystemColors.Control
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Secim, Me.FIRMA_KODU, Me.SIP_NO, Me.MUS_SIP_NO, Me.STK_KODU, Me.KRS_KAP, Me.MUS_URUN_KODU, Me.TED_1, Me.TED_2, Me.SIP_ADEDI, Me.SEV_TAR, Me.BrGr, Me.ToplamKg, Me.Grup})
         Me.DataGridView1.DataSource = Me.SIPARISBindingSource
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView1.GridColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.DataGridView1.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
@@ -328,11 +327,17 @@ Partial Class Form1
         '
         'BrGr
         '
+        DataGridViewCellStyle1.Format = "N2"
+        DataGridViewCellStyle1.NullValue = "--"
+        Me.BrGr.DefaultCellStyle = DataGridViewCellStyle1
         Me.BrGr.HeaderText = "Birim Ağırlık (gr)"
         Me.BrGr.Name = "BrGr"
         '
         'ToplamKg
         '
+        DataGridViewCellStyle2.Format = "N2"
+        DataGridViewCellStyle2.NullValue = "--"
+        Me.ToplamKg.DefaultCellStyle = DataGridViewCellStyle2
         Me.ToplamKg.HeaderText = "Toplam Ağırlık (Kg)"
         Me.ToplamKg.Name = "ToplamKg"
         '
@@ -354,25 +359,45 @@ Partial Class Form1
         Me.DataSet1.EnforceConstraints = False
         Me.DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
+        'SplitContainer2
+        '
+        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel2
+        Me.SplitContainer2.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.DataGridView2)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.KoliDataGridView)
+        Me.SplitContainer2.Size = New System.Drawing.Size(999, 185)
+        Me.SplitContainer2.SplitterDistance = 781
+        Me.SplitContainer2.TabIndex = 2
+        '
         'DataGridView2
         '
         Me.DataGridView2.AllowUserToAddRows = False
+        Me.DataGridView2.BackgroundColor = System.Drawing.SystemColors.Control
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MustSıpNo, Me.MustUrunKod, Me.KurKapl, Me.ted1, Me.ted2, Me.Adet, Me.Kg, Me.KoliNo, Me.BirimGr})
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SIPNO, Me.StkKod, Me.KurKapl, Me.MustUrunKod, Me.ted1, Me.ted2, Me.Adet, Me.Kg, Me.KoliNo, Me.BirimGr})
         Me.DataGridView2.ContextMenuStrip = Me.ContextMenuStrip1
         Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridView2.GridColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.DataGridView2.Location = New System.Drawing.Point(0, 0)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersVisible = False
         Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView2.Size = New System.Drawing.Size(999, 185)
-        Me.DataGridView2.TabIndex = 0
+        Me.DataGridView2.Size = New System.Drawing.Size(781, 185)
+        Me.DataGridView2.TabIndex = 1
         '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListedenKaldırToolStripMenuItem, Me.TemizleToolStripMenuItem, Me.ToolStripMenuItem2, Me.BölToolStripMenuItem, Me.KoliNoToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExceleVerToolStripMenuItem1})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 148)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 126)
         '
         'ListedenKaldırToolStripMenuItem
         '
@@ -391,17 +416,56 @@ Partial Class Form1
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(167, 6)
         '
+        'BölToolStripMenuItem
+        '
+        Me.BölToolStripMenuItem.Name = "BölToolStripMenuItem"
+        Me.BölToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.BölToolStripMenuItem.Text = "Böl"
+        '
         'KoliNoToolStripMenuItem
         '
         Me.KoliNoToolStripMenuItem.Name = "KoliNoToolStripMenuItem"
         Me.KoliNoToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.KoliNoToolStripMenuItem.Text = "Koli Numaralandır"
         '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(167, 6)
+        '
         'ExceleVerToolStripMenuItem1
         '
         Me.ExceleVerToolStripMenuItem1.Name = "ExceleVerToolStripMenuItem1"
         Me.ExceleVerToolStripMenuItem1.Size = New System.Drawing.Size(170, 22)
         Me.ExceleVerToolStripMenuItem1.Text = "Excel'e ver"
+        '
+        'KoliDataGridView
+        '
+        Me.KoliDataGridView.BackgroundColor = System.Drawing.SystemColors.Control
+        Me.KoliDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.KoliDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Koli, Me.Kilo})
+        Me.KoliDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.KoliDataGridView.GridColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.KoliDataGridView.Location = New System.Drawing.Point(0, 0)
+        Me.KoliDataGridView.Name = "KoliDataGridView"
+        Me.KoliDataGridView.RowHeadersVisible = False
+        Me.KoliDataGridView.Size = New System.Drawing.Size(214, 185)
+        Me.KoliDataGridView.TabIndex = 2
+        '
+        'Koli
+        '
+        Me.Koli.DataPropertyName = "KoliNo"
+        Me.Koli.HeaderText = "Koli No"
+        Me.Koli.Name = "Koli"
+        '
+        'Kilo
+        '
+        Me.Kilo.DataPropertyName = "NetKg"
+        DataGridViewCellStyle4.Format = "N2"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.Kilo.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Kilo.HeaderText = "Kilo"
+        Me.Kilo.Name = "Kilo"
         '
         'Button1
         '
@@ -425,73 +489,109 @@ Partial Class Form1
         '
         Me.SIPARISTableAdapter.ClearBeforeFill = True
         '
-        'MustSıpNo
+        'MusteriComboBox
         '
-        Me.MustSıpNo.HeaderText = "Müşteri Sip.No"
-        Me.MustSıpNo.Name = "MustSıpNo"
+        Me.MusteriComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.MusteriComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.MusteriComboBox.DataSource = Me.FIRMABindingSource
+        Me.MusteriComboBox.DisplayMember = "FIRMA_KODU"
+        Me.MusteriComboBox.FormattingEnabled = True
+        Me.MusteriComboBox.Location = New System.Drawing.Point(67, 31)
+        Me.MusteriComboBox.Name = "MusteriComboBox"
+        Me.MusteriComboBox.Size = New System.Drawing.Size(240, 21)
+        Me.MusteriComboBox.TabIndex = 15
+        Me.MusteriComboBox.ValueMember = "FIRMA_ID"
         '
-        'MustUrunKod
+        'Label2
         '
-        Me.MustUrunKod.HeaderText = "Müşteri Ürün Kodu"
-        Me.MustUrunKod.Name = "MustUrunKod"
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(12, 34)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(41, 13)
+        Me.Label2.TabIndex = 16
+        Me.Label2.Text = "Müşteri"
+        '
+        'SIPNO
+        '
+        Me.SIPNO.DataPropertyName = "SipNo"
+        Me.SIPNO.HeaderText = "Sipariş No"
+        Me.SIPNO.Name = "SIPNO"
+        Me.SIPNO.ReadOnly = True
+        '
+        'StkKod
+        '
+        Me.StkKod.HeaderText = "Ürün Kodu"
+        Me.StkKod.Name = "StkKod"
+        Me.StkKod.ReadOnly = True
         '
         'KurKapl
         '
+        Me.KurKapl.DataPropertyName = "Kaplama"
         Me.KurKapl.HeaderText = "Kürsör Kaplama"
         Me.KurKapl.Name = "KurKapl"
+        Me.KurKapl.ReadOnly = True
+        '
+        'MustUrunKod
+        '
+        Me.MustUrunKod.DataPropertyName = "Kod"
+        Me.MustUrunKod.HeaderText = "Müşteri Ürün Kodu"
+        Me.MustUrunKod.Name = "MustUrunKod"
+        Me.MustUrunKod.ReadOnly = True
         '
         'ted1
         '
+        Me.ted1.DataPropertyName = "Ted_1"
         Me.ted1.HeaderText = "Ted_1"
         Me.ted1.Name = "ted1"
+        Me.ted1.ReadOnly = True
         '
         'ted2
         '
+        Me.ted2.DataPropertyName = "Ted_2"
         Me.ted2.HeaderText = "Ted_2"
         Me.ted2.Name = "ted2"
+        Me.ted2.ReadOnly = True
         '
         'Adet
         '
+        Me.Adet.DataPropertyName = "Adet"
         Me.Adet.HeaderText = "Adet"
         Me.Adet.Name = "Adet"
         '
         'Kg
         '
+        Me.Kg.DataPropertyName = "Kg"
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = "--"
+        Me.Kg.DefaultCellStyle = DataGridViewCellStyle3
         Me.Kg.HeaderText = "Kg"
         Me.Kg.Name = "Kg"
+        Me.Kg.ReadOnly = True
         '
         'KoliNo
         '
+        Me.KoliNo.DataPropertyName = "KoliNo"
         Me.KoliNo.HeaderText = "Koli No"
         Me.KoliNo.Name = "KoliNo"
         '
         'BirimGr
         '
+        Me.BirimGr.DataPropertyName = "BirimGr"
         Me.BirimGr.HeaderText = "BirimGr"
         Me.BirimGr.Name = "BirimGr"
+        Me.BirimGr.ReadOnly = True
         Me.BirimGr.Visible = False
-        '
-        'BölToolStripMenuItem
-        '
-        Me.BölToolStripMenuItem.Name = "BölToolStripMenuItem"
-        Me.BölToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.BölToolStripMenuItem.Text = "Böl"
-        '
-        'ToolStripMenuItem3
-        '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(167, 6)
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(999, 411)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.MusteriComboBox)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.Button_GrHesap)
-        Me.Controls.Add(Me.TextBox_Firma)
-        Me.Controls.Add(Me.CheckBox_Firma)
         Me.Controls.Add(Me.CheckBox3)
         Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.CheckBox2)
@@ -512,8 +612,13 @@ Partial Class Form1
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SIPARISBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.Panel1.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.ResumeLayout(False)
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
+        CType(Me.KoliDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FIRMABindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -530,8 +635,6 @@ Partial Class Form1
     Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
     Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
-    Friend WithEvents CheckBox_Firma As System.Windows.Forms.CheckBox
-    Friend WithEvents TextBox_Firma As System.Windows.Forms.TextBox
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents DosyaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BoyutSisKullanıcıToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -541,10 +644,17 @@ Partial Class Form1
     Friend WithEvents Button_GrHesap As Button
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents DataGridView1 As DataGridView
-    Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents Button1 As Button
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents ListedenKaldırToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents KoliNoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TemizleToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExceleVerToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents BölToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
+    Friend WithEvents MusteriComboBox As ComboBox
+    Friend WithEvents Label2 As Label
     Friend WithEvents Secim As DataGridViewCheckBoxColumn
     Friend WithEvents FIRMA_KODU As DataGridViewTextBoxColumn
     Friend WithEvents SIP_NO As DataGridViewTextBoxColumn
@@ -559,19 +669,19 @@ Partial Class Form1
     Friend WithEvents BrGr As DataGridViewTextBoxColumn
     Friend WithEvents ToplamKg As DataGridViewTextBoxColumn
     Friend WithEvents Grup As DataGridViewTextBoxColumn
-    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
-    Friend WithEvents KoliNoToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents TemizleToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExceleVerToolStripMenuItem1 As ToolStripMenuItem
-    Friend WithEvents MustSıpNo As DataGridViewTextBoxColumn
-    Friend WithEvents MustUrunKod As DataGridViewTextBoxColumn
+    Friend WithEvents SplitContainer2 As SplitContainer
+    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents KoliDataGridView As DataGridView
+    Friend WithEvents Koli As DataGridViewTextBoxColumn
+    Friend WithEvents Kilo As DataGridViewTextBoxColumn
+    Friend WithEvents SIPNO As DataGridViewTextBoxColumn
+    Friend WithEvents StkKod As DataGridViewTextBoxColumn
     Friend WithEvents KurKapl As DataGridViewTextBoxColumn
+    Friend WithEvents MustUrunKod As DataGridViewTextBoxColumn
     Friend WithEvents ted1 As DataGridViewTextBoxColumn
     Friend WithEvents ted2 As DataGridViewTextBoxColumn
     Friend WithEvents Adet As DataGridViewTextBoxColumn
     Friend WithEvents Kg As DataGridViewTextBoxColumn
     Friend WithEvents KoliNo As DataGridViewTextBoxColumn
     Friend WithEvents BirimGr As DataGridViewTextBoxColumn
-    Friend WithEvents BölToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem3 As ToolStripSeparator
 End Class

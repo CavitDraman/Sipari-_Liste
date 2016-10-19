@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TmpDataSet" targetNamespace="http://tempuri.org/TmpDataSet.xsd" xmlns:mstns="http://tempuri.org/TmpDataSet.xsd" xmlns="http://tempuri.org/TmpDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TmpDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="TmpDataSet" msprop:Generator_UserDSName="TmpDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ListeTmp" msprop:Generator_TableClassName="ListeTmpDataTable" msprop:Generator_TableVarName="tableListeTmp" msprop:Generator_RowChangedName="ListeTmpRowChanged" msprop:Generator_TablePropName="ListeTmp" msprop:Generator_RowDeletingName="ListeTmpRowDeleting" msprop:Generator_RowChangingName="ListeTmpRowChanging" msprop:Generator_RowEvHandlerName="ListeTmpRowChangeEventHandler" msprop:Generator_RowDeletedName="ListeTmpRowDeleted" msprop:Generator_RowClassName="ListeTmpRow" msprop:Generator_UserTableName="ListeTmp" msprop:Generator_RowEvArgName="ListeTmpRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SipNo" msprop:Generator_ColumnVarNameInTable="columnSipNo" msprop:Generator_ColumnPropNameInRow="SipNo" msprop:Generator_ColumnPropNameInTable="SipNoColumn" msprop:Generator_UserColumnName="SipNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Kod" msprop:Generator_ColumnVarNameInTable="columnKod" msprop:Generator_ColumnPropNameInRow="Kod" msprop:Generator_ColumnPropNameInTable="KodColumn" msprop:Generator_UserColumnName="Kod" type="xs:string" minOccurs="0" />
+              <xs:element name="Kaplama" msprop:Generator_ColumnVarNameInTable="columnKaplama" msprop:Generator_ColumnPropNameInRow="Kaplama" msprop:Generator_ColumnPropNameInTable="KaplamaColumn" msprop:Generator_UserColumnName="Kaplama" type="xs:string" minOccurs="0" />
+              <xs:element name="Ted_1" msprop:Generator_ColumnVarNameInTable="columnTed_1" msprop:Generator_ColumnPropNameInRow="Ted_1" msprop:Generator_ColumnPropNameInTable="Ted_1Column" msprop:Generator_UserColumnName="Ted_1" type="xs:string" minOccurs="0" />
+              <xs:element name="Ted_2" msprop:Generator_ColumnVarNameInTable="columnTed_2" msprop:Generator_ColumnPropNameInRow="Ted_2" msprop:Generator_ColumnPropNameInTable="Ted_2Column" msprop:Generator_UserColumnName="Ted_2" type="xs:string" minOccurs="0" />
+              <xs:element name="Adet" msprop:Generator_ColumnVarNameInTable="columnAdet" msprop:Generator_ColumnPropNameInRow="Adet" msprop:Generator_ColumnPropNameInTable="AdetColumn" msprop:Generator_UserColumnName="Adet" type="xs:short" minOccurs="0" />
+              <xs:element name="Kg" msprop:Generator_ColumnVarNameInTable="columnKg" msprop:Generator_ColumnPropNameInRow="Kg" msprop:Generator_ColumnPropNameInTable="KgColumn" msprop:Generator_UserColumnName="Kg" type="xs:decimal" minOccurs="0" />
+              <xs:element name="KoliNo" msprop:Generator_ColumnVarNameInTable="columnKoliNo" msprop:Generator_ColumnPropNameInRow="KoliNo" msprop:Generator_ColumnPropNameInTable="KoliNoColumn" msprop:Generator_UserColumnName="KoliNo" type="xs:short" minOccurs="0" />
+              <xs:element name="BirimGr" msprop:Generator_ColumnVarNameInTable="columnBirimGr" msprop:Generator_ColumnPropNameInRow="BirimGr" msprop:Generator_ColumnPropNameInTable="BirimGrColumn" msprop:Generator_UserColumnName="BirimGr" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MusteriKodu" msprop:Generator_ColumnVarNameInTable="columnMusteriKodu" msprop:Generator_ColumnPropNameInRow="MusteriKodu" msprop:Generator_ColumnPropNameInTable="MusteriKoduColumn" msprop:Generator_UserColumnName="MusteriKodu" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="KoliListe" msprop:Generator_TableClassName="KoliListeDataTable" msprop:Generator_TableVarName="tableKoliListe" msprop:Generator_TablePropName="KoliListe" msprop:Generator_RowDeletingName="KoliListeRowDeleting" msprop:Generator_RowChangingName="KoliListeRowChanging" msprop:Generator_RowEvHandlerName="KoliListeRowChangeEventHandler" msprop:Generator_RowDeletedName="KoliListeRowDeleted" msprop:Generator_UserTableName="KoliListe" msprop:Generator_RowChangedName="KoliListeRowChanged" msprop:Generator_RowEvArgName="KoliListeRowChangeEvent" msprop:Generator_RowClassName="KoliListeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="KoliNo" msprop:Generator_ColumnVarNameInTable="columnKoliNo" msprop:Generator_ColumnPropNameInRow="KoliNo" msprop:Generator_ColumnPropNameInTable="KoliNoColumn" msprop:Generator_UserColumnName="KoliNo" type="xs:short" minOccurs="0" />
+              <xs:element name="Kg" msprop:Generator_ColumnVarNameInTable="columnKg" msprop:Generator_ColumnPropNameInRow="Kg" msprop:Generator_ColumnPropNameInTable="KgColumn" msprop:Generator_UserColumnName="Kg" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

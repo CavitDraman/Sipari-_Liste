@@ -4,8 +4,7 @@
     Public AppName As String = Application.ProductName '"BoyutSisConnection"
 
     Private Filter As String
-
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load, CheckBox1.CheckedChanged
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim UserName = GetSetting(AppName, "Connection Settings", "User")
             Dim Password = GetSetting(AppName, "Connection Settings", "PassWord")
@@ -16,15 +15,19 @@
             BoyutConn.ConnectionString = BoyutSisConnStr
 
             Me.SIPARISTableAdapter.Connection.ConnectionString = BoyutSisConnStr
-            'Me.FIRMATableAdapter.Connection = BoyutConn
+            Me.FIRMATableAdapter.Connection.ConnectionString = BoyutSisConnStr
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Boyut Bağlantısı")
         End Try
 
         Try
-            Me.SIPARISTableAdapter.Fill(Me.DataSet1.SIPARIS, Not CheckBox1.Checked)
-            Filtreleme(Nothing, e)
+            Me.FIRMATableAdapter.Fill(DataSet1.FIRMA, Not CheckBox1.Checked)
+            'Me.SIPARISTableAdapter.Fill(Me.DataSet1.SIPARIS, Not CheckBox1.Checked)
+            'Filtreleme(Nothing, e)
+
+            'DataGridView2.DataSource = Liste
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "--")
         End Try
@@ -41,14 +44,14 @@
 
         Dim RwNum As Integer
         Try
-            TextBox_Firma.Focus()
+            'TextBox_Firma.Focus()
 
             Excel = CreateObject("Excel.Application")
             WBook = Excel.Workbooks.add
             WSheet = WBook.Worksheets(1)
 
-            If CheckBox_Firma.Checked Then
-                Dim FirmaKod As String = DataGridView1.Rows(0).Cells("FIRMA_KODU").Value
+            'If CheckBox_Firma.Checked Then
+            Dim FirmaKod As String = DataGridView1.Rows(0).Cells("FIRMA_KODU").Value
                 Dim FirmaTbl As New DataSet1.FIRMADataTable
 
                 FIRMATableAdapter.FillBy_FIRMA_KODU(FirmaTbl, FirmaKod)
@@ -68,9 +71,10 @@
                 Else
                     RwNum = 3
                 End If
-            Else
-                RwNum = 1
-            End If
+
+            'Else
+            '    RwNum = 1
+            'End If
 
             Dim c As Integer = 1
 
@@ -87,8 +91,10 @@
                 'If Rw.Cells("Secim").Value Then
                 c = 1
                 For Each Cell As DataGridViewCell In Rw.Cells
-                    WSheet.Cells(RwNum, c) = Cell.Value '.ToString.Trim
-                    c += 1
+                    If Cell.OwningColumn.Visible Then
+                        WSheet.Cells(RwNum, c) = Cell.Value '.ToString.Trim
+                        c += 1
+                    End If
                 Next
                 RwNum += 1
                 'End If
@@ -106,11 +112,19 @@
 
     End Sub
 
+    Private Sub MusteriComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles MusteriComboBox.SelectedIndexChanged, CheckBox1.CheckedChanged
+        Try
+            'Me.FIRMATableAdapter.Fill(DataSet1.FIRMA, False)
+            Me.SIPARISTableAdapter.FillBy_Firma(Me.DataSet1.SIPARIS, Not CheckBox1.Checked, MusteriComboBox.Text)
+            Filtreleme(Nothing, e)
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "--")
+        End Try
+    End Sub
+
     Private Sub Filtreleme(sender As Object, e As EventArgs) Handles TextBox1.TextChanged,
                                                                      CheckBox2.CheckedChanged,
-                                                                     DateTimePicker1.ValueChanged,
-                                                                     TextBox_Firma.TextChanged,
-                                                                     CheckBox_Firma.CheckedChanged
+                                                                     DateTimePicker1.ValueChanged
 
 
         Try
@@ -121,9 +135,9 @@
                 Filter &= "AND SEV_TAR = '" & Dt.Year & "-" & Dt.Month & "-" & Dt.Day & "' "
             End If
 
-            If CheckBox_Firma.Checked Then
-                Filter &= " AND FIRMA_KODU LIKE '" & TextBox_Firma.Text & "%'"
-            End If
+            'If CheckBox_Firma.Checked Then
+            '    Filter &= " AND FIRMA_KODU LIKE '" & TextBox_Firma.Text & "%'"
+            'End If
 
             SIPARISBindingSource.Filter = Filter
 
@@ -177,20 +191,22 @@
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub ListeyeEkle_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
             For Each Rw As DataGridViewRow In DataGridView1.Rows
                 If Rw.Cells("Secim").Value Then
+
                     DataGridView2.Rows.Add(
-                        Rw.Cells("MUS_SIP_NO").Value,
-                        Rw.Cells("MUS_URUN_KODU").Value,
+                        Rw.Cells("SIP_NO").Value,
+                        Rw.Cells("STK_KODU").Value,
                         Rw.Cells("KRS_KAP").Value,
+                        Rw.Cells("MUS_URUN_KODU").Value,
                         Rw.Cells("TED_1").Value,
                         Rw.Cells("TED_2").Value,
-                        Rw.Cells("SIP_ADEDI").Value,
-                        Rw.Cells("ToplamKg").Value,
-                        "",
-                        Rw.Cells("BrGr").Value)
+                        CDec(Rw.Cells("SIP_ADEDI").Value),
+                        CDec(Rw.Cells("ToplamKg").Value),
+                        0,
+                        CDec(Rw.Cells("BrGr").Value))
                 End If
             Next
         Catch ex As Exception
@@ -252,16 +268,19 @@
 
                     If .ShowDialog() = DialogResult.OK Then
                         For Each NRow As DataRow In .Res.Rows
-                            DataGridView2.Rows.Add(
-                                    RW.Cells("MustSıpNo").Value,
-                                    RW.Cells("MustUrunKod").Value,
+                            If Not IsDBNull(NRow("Adet")) Then
+                                DataGridView2.Rows.Add(
+                                    RW.Cells("SIPNO").Value,
+                                    RW.Cells("StkKod").Value,
                                     RW.Cells("KurKapl").Value,
+                                    RW.Cells("MustUrunKod").Value,
                                     RW.Cells("Ted1").Value,
                                     RW.Cells("Ted2").Value,
-                                    NRow("Adet"),
-                                    NRow("Kg"),
-                                    "",
-                                    RW.Cells("BirimGr").Value)
+                                    CDec(NRow("Adet")),
+                                    CDec(NRow("Kg")),
+                                    CInt(RW.Cells("KoliNo").Value),
+                                    CDec(RW.Cells("BirimGr").Value))
+                            End If
                         Next
 
                         DataGridView2.Rows.Remove(RW)
@@ -274,4 +293,46 @@
             MsgBox(ex.Message, MsgBoxStyle.Critical)
         End Try
     End Sub
+
+    Private Sub KoliKg()
+
+        Dim TmpTable As TmpDataSet.KoliListeDataTable = MakeDataTable()
+
+        Dim XX = From K In TmpTable
+                 Group By K.KoliNo Into NetKg = Sum(K.Kg)
+                 Select KoliNo, NetKg
+
+        KoliDataGridView.Rows.Clear()
+        For Each X In XX
+            KoliDataGridView.Rows.Add(X.KoliNo, X.NetKg)
+        Next
+    End Sub
+
+    Private Sub DataGridView2_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles DataGridView2.RowStateChanged
+        KoliKg()
+    End Sub
+
+    Private Function MakeDataTable() As TmpDataSet.KoliListeDataTable
+        Dim Tmptable As New TmpDataSet.KoliListeDataTable
+
+        For Each RW As DataGridViewRow In DataGridView2.Rows
+            Tmptable.Rows.Add(RW.Cells("KoliNo").Value, RW.Cells("Kg").Value)
+        Next
+
+        Return Tmptable
+
+    End Function
+
+    Private Sub DataGridView2_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellEndEdit
+
+        Select Case DataGridView2.Columns(e.ColumnIndex).Name
+            Case "KoliNo"
+                KoliKg()
+            Case "Adet"
+                Dim Rw As DataGridViewRow = DataGridView2.Rows(e.RowIndex)
+                Rw.Cells("Kg").Value = Rw.Cells("Adet").Value * Rw.Cells("BirimGr").Value / 1000
+        End Select
+    End Sub
+
+
 End Class

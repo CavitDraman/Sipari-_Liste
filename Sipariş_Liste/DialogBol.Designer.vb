@@ -32,6 +32,8 @@ Partial Class DialogBol
         Me.Label2 = New System.Windows.Forms.Label()
         Me.AdetTextBox = New System.Windows.Forms.TextBox()
         Me.KiloTextBox = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.KalanAdetTextBox = New System.Windows.Forms.TextBox()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -81,7 +83,7 @@ Partial Class DialogBol
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 25
         Me.DataGridView1.Size = New System.Drawing.Size(299, 141)
-        Me.DataGridView1.TabIndex = 1
+        Me.DataGridView1.TabIndex = 0
         '
         'Ad
         '
@@ -118,7 +120,7 @@ Partial Class DialogBol
         Me.AdetTextBox.Name = "AdetTextBox"
         Me.AdetTextBox.ReadOnly = True
         Me.AdetTextBox.Size = New System.Drawing.Size(100, 20)
-        Me.AdetTextBox.TabIndex = 4
+        Me.AdetTextBox.TabIndex = 3
         '
         'KiloTextBox
         '
@@ -126,7 +128,24 @@ Partial Class DialogBol
         Me.KiloTextBox.Name = "KiloTextBox"
         Me.KiloTextBox.ReadOnly = True
         Me.KiloTextBox.Size = New System.Drawing.Size(100, 20)
-        Me.KiloTextBox.TabIndex = 5
+        Me.KiloTextBox.TabIndex = 4
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 205)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(59, 13)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Kalan Adet"
+        '
+        'KalanAdetTextBox
+        '
+        Me.KalanAdetTextBox.Location = New System.Drawing.Point(15, 221)
+        Me.KalanAdetTextBox.Name = "KalanAdetTextBox"
+        Me.KalanAdetTextBox.ReadOnly = True
+        Me.KalanAdetTextBox.Size = New System.Drawing.Size(100, 20)
+        Me.KalanAdetTextBox.TabIndex = 4
         '
         'DialogBol
         '
@@ -135,7 +154,9 @@ Partial Class DialogBol
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(326, 261)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.KiloTextBox)
+        Me.Controls.Add(Me.KalanAdetTextBox)
         Me.Controls.Add(Me.AdetTextBox)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
@@ -164,4 +185,6 @@ Partial Class DialogBol
     Friend WithEvents KiloTextBox As TextBox
     Friend WithEvents Ad As DataGridViewTextBoxColumn
     Friend WithEvents Kilo As DataGridViewTextBoxColumn
+    Friend WithEvents Label3 As Label
+    Friend WithEvents KalanAdetTextBox As TextBox
 End Class

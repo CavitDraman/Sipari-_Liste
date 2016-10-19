@@ -41,8 +41,12 @@ Public Class DialogBol
     End Sub
 
     Private Sub DialogBol_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        DataGridView1.Rows.Clear()
         DataGridView1.Rows.Add(Adet, Adet * BrGr / 1000)
         TopKg = Adet * BrGr / 100
+        DataGridView1.Focus()
+
     End Sub
 
     Private Sub DataGridView1_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit,
@@ -59,6 +63,6 @@ Public Class DialogBol
 
         AdetTextBox.Text = TopAd
         KiloTextBox.Text = TopKg
-
+        KalanAdetTextBox.Text = Adet - TopAd
     End Sub
 End Class

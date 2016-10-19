@@ -3395,7 +3395,7 @@ Namespace DataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.Odbc.OdbcCommand(0) {}
+            Me._commandCollection = New Global.System.Data.Odbc.OdbcCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.Odbc.OdbcCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        DBA.SIPARIS.SIP_NO, DBA.FIRMA.FIRMA_KODU, DBA.SIPARIS.MUS_SIP_NO, D"& _ 
@@ -3418,6 +3418,30 @@ Namespace DataSet1TableAdapters
                 "        DBA.SIP_EK_BILGI.SATIR_SIRA = 2)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("KAPANDI", Global.System.Data.Odbc.OdbcType.Bit, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "KAPANDI", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(1) = New Global.System.Data.Odbc.OdbcCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT        DBA.SIPARIS.SIP_NO, DBA.FIRMA.FIRMA_KODU, DBA.SIPARIS.MUS_SIP_NO, D"& _ 
+                "BA.STK_TANIM.STK_KODU, DBA.SIP_URUN.MUS_URUN_KODU, DBA.SIP_ADET.TED_1, DBA.SIP_A"& _ 
+                "DET.TED_2, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DBA.SIP_ADET.SIP_ADEDI, DBA.SIP_URUN.SEV_T"& _ 
+                "AR, DBA.SIP_URUN.KAPANDI, DBA.SIP_EK_BILGI.NOTLAR AS ""Kürsör Kaplama"", CASE LEFT"& _ 
+                "(DBA.STK_TANIM.STK_KODU, 3) "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         WHEN 'FRT' THEN 'POLYESTE"& _ 
+                "R' WHEN 'FTR' THEN 'METAL' WHEN 'FT8' THEN 'METAL' WHEN 'FT5' THEN 'METAL' WHEN "& _ 
+                "'FD6' THEN 'KEMİK' WHEN 'FD3' THEN 'KEMİK' WHEN 'FD1' THEN 'KEMİK' WHEN 'PGM'"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                         THEN 'TE.PD' WHEN 'PGD' THEN 'TE.PD' WHEN 'PGN' THEN 'T"& _ 
+                "E.PD' WHEN 'PGP' THEN 'TE.PD' WHEN 'PE-' THEN 'TE.PD' WHEN 'PEA' THEN 'TE.PD' WH"& _ 
+                "EN 'PP-' THEN 'TE.PD' WHEN 'PS-' THEN 'TE.PD' WHEN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                          'P"& _ 
+                "BY' THEN 'TD.PD' WHEN 'POT' THEN 'TD.PD' ELSE 'DİĞER' END AS Grup"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM         "& _ 
+                "   DBA.SIPARIS, DBA.SIP_ADET, DBA.STK_TANIM, DBA.FIRMA, { oj DBA.SIP_URUN LEFT O"& _ 
+                "UTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DBA.SIP_EK_BILGI ON DBA.SIP_URUN.URUN_SIRA_N"& _ 
+                "O = DBA.SIP_EK_BILGI.URUN_SIRA_NO }"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        DBA.SIPARIS.SIP_ID = DBA.SIP_U"& _ 
+                "RUN.SIP_ID AND DBA.SIP_URUN.URUN_SIRA_NO = DBA.SIP_ADET.URUN_SIRA_NO AND DBA.SIP"& _ 
+                "_URUN.URUN_ID = DBA.STK_TANIM.STK_ID AND "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DBA.SIPARIS."& _ 
+                "MUS_KODU = DBA.FIRMA.FIRMA_ID AND (DBA.SIP_URUN.KAPANDI = ?) AND (DBA.SIP_EK_BIL"& _ 
+                "GI.SATIR_SIRA IS NULL OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DBA.SIP_EK_BILGI.SATIR_SIRA ="& _ 
+                " 2) AND (DBA.FIRMA.FIRMA_KODU = ?)"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("KAPANDI", Global.System.Data.Odbc.OdbcType.Bit, 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "KAPANDI", Global.System.Data.DataRowVersion.Current, false, Nothing))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.Odbc.OdbcParameter("FIRMA_KODU", Global.System.Data.Odbc.OdbcType.VarChar, 1024, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "FIRMA_KODU", Global.System.Data.DataRowVersion.Current, false, Nothing))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3441,6 +3465,42 @@ Namespace DataSet1TableAdapters
         Public Overloads Overridable Function GetData(ByVal KAPANDI As Boolean) As DataSet1.SIPARISDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(KAPANDI,Boolean)
+            Dim dataTable As DataSet1.SIPARISDataTable = New DataSet1.SIPARISDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillBy_Firma(ByVal dataTable As DataSet1.SIPARISDataTable, ByVal KAPANDI As Boolean, ByVal FIRMA_KODU As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KAPANDI,Boolean)
+            If (FIRMA_KODU Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("FIRMA_KODU")
+            Else
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(FIRMA_KODU,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataBy_Firma(ByVal KAPANDI As Boolean, ByVal FIRMA_KODU As String) As DataSet1.SIPARISDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(KAPANDI,Boolean)
+            If (FIRMA_KODU Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("FIRMA_KODU")
+            Else
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(FIRMA_KODU,String)
+            End If
             Dim dataTable As DataSet1.SIPARISDataTable = New DataSet1.SIPARISDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
