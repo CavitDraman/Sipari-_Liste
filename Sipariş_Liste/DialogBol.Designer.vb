@@ -22,6 +22,7 @@ Partial Class DialogBol
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
@@ -34,8 +35,12 @@ Partial Class DialogBol
         Me.KiloTextBox = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.KalanAdetTextBox = New System.Windows.Forms.TextBox()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EşitAdetteBölToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EşitKilodaBölToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -46,7 +51,7 @@ Partial Class DialogBol
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(168, 220)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(168, 244)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -79,10 +84,11 @@ Partial Class DialogBol
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Ad, Me.Kilo})
+        Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStrip1
         Me.DataGridView1.Location = New System.Drawing.Point(12, 12)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 25
-        Me.DataGridView1.Size = New System.Drawing.Size(299, 141)
+        Me.DataGridView1.Size = New System.Drawing.Size(299, 165)
         Me.DataGridView1.TabIndex = 0
         '
         'Ad
@@ -98,8 +104,9 @@ Partial Class DialogBol
         '
         'Label1
         '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 166)
+        Me.Label1.Location = New System.Drawing.Point(12, 184)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(29, 13)
         Me.Label1.TabIndex = 2
@@ -107,8 +114,9 @@ Partial Class DialogBol
         '
         'Label2
         '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(118, 166)
+        Me.Label2.Location = New System.Drawing.Point(118, 184)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(24, 13)
         Me.Label2.TabIndex = 3
@@ -116,7 +124,8 @@ Partial Class DialogBol
         '
         'AdetTextBox
         '
-        Me.AdetTextBox.Location = New System.Drawing.Point(15, 182)
+        Me.AdetTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.AdetTextBox.Location = New System.Drawing.Point(15, 200)
         Me.AdetTextBox.Name = "AdetTextBox"
         Me.AdetTextBox.ReadOnly = True
         Me.AdetTextBox.Size = New System.Drawing.Size(100, 20)
@@ -124,7 +133,8 @@ Partial Class DialogBol
         '
         'KiloTextBox
         '
-        Me.KiloTextBox.Location = New System.Drawing.Point(121, 182)
+        Me.KiloTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.KiloTextBox.Location = New System.Drawing.Point(121, 200)
         Me.KiloTextBox.Name = "KiloTextBox"
         Me.KiloTextBox.ReadOnly = True
         Me.KiloTextBox.Size = New System.Drawing.Size(100, 20)
@@ -132,8 +142,9 @@ Partial Class DialogBol
         '
         'Label3
         '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 205)
+        Me.Label3.Location = New System.Drawing.Point(12, 223)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(59, 13)
         Me.Label3.TabIndex = 6
@@ -141,11 +152,30 @@ Partial Class DialogBol
         '
         'KalanAdetTextBox
         '
-        Me.KalanAdetTextBox.Location = New System.Drawing.Point(15, 221)
+        Me.KalanAdetTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.KalanAdetTextBox.Location = New System.Drawing.Point(15, 239)
         Me.KalanAdetTextBox.Name = "KalanAdetTextBox"
         Me.KalanAdetTextBox.ReadOnly = True
         Me.KalanAdetTextBox.Size = New System.Drawing.Size(100, 20)
         Me.KalanAdetTextBox.TabIndex = 4
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EşitAdetteBölToolStripMenuItem, Me.EşitKilodaBölToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+        '
+        'EşitAdetteBölToolStripMenuItem
+        '
+        Me.EşitAdetteBölToolStripMenuItem.Name = "EşitAdetteBölToolStripMenuItem"
+        Me.EşitAdetteBölToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EşitAdetteBölToolStripMenuItem.Text = "Eşit adette böl"
+        '
+        'EşitKilodaBölToolStripMenuItem
+        '
+        Me.EşitKilodaBölToolStripMenuItem.Name = "EşitKilodaBölToolStripMenuItem"
+        Me.EşitKilodaBölToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EşitKilodaBölToolStripMenuItem.Text = "Eşit kiloda böl"
         '
         'DialogBol
         '
@@ -153,7 +183,7 @@ Partial Class DialogBol
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(326, 261)
+        Me.ClientSize = New System.Drawing.Size(326, 285)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.KiloTextBox)
         Me.Controls.Add(Me.KalanAdetTextBox)
@@ -171,6 +201,7 @@ Partial Class DialogBol
         Me.Text = "DialogBol"
         Me.TableLayoutPanel1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -187,4 +218,7 @@ Partial Class DialogBol
     Friend WithEvents Kilo As DataGridViewTextBoxColumn
     Friend WithEvents Label3 As Label
     Friend WithEvents KalanAdetTextBox As TextBox
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents EşitAdetteBölToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EşitKilodaBölToolStripMenuItem As ToolStripMenuItem
 End Class

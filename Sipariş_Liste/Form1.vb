@@ -52,25 +52,25 @@
 
             'If CheckBox_Firma.Checked Then
             Dim FirmaKod As String = DataGridView1.Rows(0).Cells("FIRMA_KODU").Value
-                Dim FirmaTbl As New DataSet1.FIRMADataTable
+            Dim FirmaTbl As New DataSet1.FIRMADataTable
 
-                FIRMATableAdapter.FillBy_FIRMA_KODU(FirmaTbl, FirmaKod)
+            FIRMATableAdapter.FillBy_FIRMA_KODU(FirmaTbl, FirmaKod)
 
-                WSheet.Cells(1, 2) = FirmaKod
+            WSheet.Cells(1, 2) = FirmaKod
 
-                If FirmaTbl.Rows.Count > 0 Then
-                    Dim FRow As DataSet1.FIRMARow = FirmaTbl.Rows(0)
-                    WSheet.Cells(2, 2) = IIf(FRow.IsADRES_1Null, "-", FRow("ADRES_1"))
-                    WSheet.Cells(3, 2) = IIf(FRow.IsADRES_2Null, "-", FRow("ADRES_2"))
-                    WSheet.Cells(4, 2) = IIf(FRow.IsADRES_3Null, "-", FRow("ADRES_3"))
-                    WSheet.Cells(5, 2) = IIf(FRow.IsADRES_4Null, "-", FRow("ADRES_4"))
-                    WSheet.Cells(6, 2) = IIf(FRow.IsPOSTA_KODUNull, "-", FRow("POSTA_KODU")) & "  " &
+            If FirmaTbl.Rows.Count > 0 Then
+                Dim FRow As DataSet1.FIRMARow = FirmaTbl.Rows(0)
+                WSheet.Cells(2, 2) = IIf(FRow.IsADRES_1Null, "-", FRow("ADRES_1"))
+                WSheet.Cells(3, 2) = IIf(FRow.IsADRES_2Null, "-", FRow("ADRES_2"))
+                WSheet.Cells(4, 2) = IIf(FRow.IsADRES_3Null, "-", FRow("ADRES_3"))
+                WSheet.Cells(5, 2) = IIf(FRow.IsADRES_4Null, "-", FRow("ADRES_4"))
+                WSheet.Cells(6, 2) = IIf(FRow.IsPOSTA_KODUNull, "-", FRow("POSTA_KODU")) & "  " &
                                          IIf(FRow.IsSEHIRNull, "-", FRow("SEHIR")) & " / " &
                                          IIf(FRow.IsULKE_KODUNull, "-", FRow("ULKE_KODU"))
-                    RwNum = 8
-                Else
-                    RwNum = 3
-                End If
+                RwNum = 8
+            Else
+                RwNum = 3
+            End If
 
             'Else
             '    RwNum = 1
@@ -236,14 +236,19 @@
             For Each RW As DataGridViewRow In DataGridView2.Rows
                 Dim Kg As Single = RW.Cells("Kg").Value
 
-                If (ToplKg + Kg) > MaxKg Then
+                If Kg > MaxKg Then
+                    KoliNo += 1
+                    ToplKg = Kg
+
+                ElseIf (ToplKg + Kg) > MaxKg Then
                     KoliNo += 1
                     ToplKg = 0
+
                 Else
                     ToplKg += Kg
                 End If
 
-                RW.Cells("KoliNo").Value = KoliNo
+                RW.Cells("KoliNo").Value = CInt(KoliNo)
             Next
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -277,8 +282,8 @@
                                     RW.Cells("Ted2").Value,
                                     CDec(NRow("Adet")),
                                     CDec(NRow("Kg")),
-                                    CInt(RW.Cells("KoliNo").Value),
-                                    CDec(RW.Cells("BirimGr").Value))
+                                    CInt(RW.Cells("KoliNo").Value), 'RW.Cells("KoliNo").Value.ToString,     '
+                                CDec(RW.Cells("BirimGr").Value))
                             End If
                         Next
 
@@ -288,6 +293,11 @@
 
                 End With
             End If
+
+            For Each R As DataGridViewRow In DataGridView2.Rows
+                R.Cells("KoliNo").Value = CInt(R.Cells("KoliNo").Value)
+            Next
+
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical)
         End Try
@@ -333,5 +343,60 @@
         End Select
     End Sub
 
+    Private Sub DataGridView2_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView2.ColumnHeaderMouseClick
+        If e.ColumnIndex = 8 Then
+            DataGridView2.Sort(New RowComparer(SortOrder.Ascending))
+        End If
+    End Sub
 
+#Region "Sort Metodu"
+    Private Class RowComparer
+        Implements System.Collections.IComparer
+
+        Private sortOrderModifier As Integer = 1
+
+        Public Sub New(ByVal sortOrder As SortOrder)
+            If sortOrder = SortOrder.Descending Then
+                sortOrderModifier = -1
+            ElseIf sortOrder = SortOrder.Ascending Then
+                sortOrderModifier = 1
+            End If
+        End Sub
+
+        Public Function Compare(ByVal x As Object, ByVal y As Object) As Integer _
+            Implements System.Collections.IComparer.Compare
+
+            Dim Row1 As DataGridViewRow = CType(x, DataGridViewRow)
+            Dim Row2 As DataGridViewRow = CType(y, DataGridViewRow)
+
+            Dim x1 As Integer = CInt(Row1.Cells(8).Value)
+            Dim y1 As Integer = CInt(Row2.Cells(8).Value)
+
+            Dim CompareResult As Integer
+            If x1 > y1 Then
+                CompareResult = 1
+            ElseIf x1 < y1 Then
+                CompareResult = -1
+            ElseIf x1 = y1 Then
+                CompareResult = 0
+            End If
+
+            'String.Compare(
+            '    DataGridViewRow1.Cells(1).Value.ToString(),
+            '    DataGridViewRow2.Cells(1).Value.ToString())
+
+            ' If the Last Names are equal, sort based on the First Name.
+            'If CompareResult = 0 Then
+            '    CompareResult = String.Compare(
+            '        Row1.Cells(0).Value.ToString(),
+            '        Row2.Cells(0).Value.ToString())
+            'End If
+
+            Return CompareResult * sortOrderModifier
+
+        End Function
+    End Class
+#End Region
 End Class
+
+

@@ -25,8 +25,8 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -61,16 +61,6 @@ Partial Class Form1
         Me.DataSet1 = New Sipariş_Liste.DataSet1()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.SIPNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StkKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KurKapl = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MustUrunKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ted1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ted2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Adet = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Kg = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KoliNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BirimGr = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ListedenKaldırToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TemizleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -88,6 +78,16 @@ Partial Class Form1
         Me.SIPARISTableAdapter = New Sipariş_Liste.DataSet1TableAdapters.SIPARISTableAdapter()
         Me.MusteriComboBox = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.SIPNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StkKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KurKapl = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MustUrunKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ted1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ted2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Adet = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Kg = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KoliNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BirimGr = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -393,77 +393,6 @@ Partial Class Form1
         Me.DataGridView2.Size = New System.Drawing.Size(781, 185)
         Me.DataGridView2.TabIndex = 1
         '
-        'SIPNO
-        '
-        Me.SIPNO.DataPropertyName = "SipNo"
-        Me.SIPNO.HeaderText = "Sipariş No"
-        Me.SIPNO.Name = "SIPNO"
-        Me.SIPNO.ReadOnly = True
-        '
-        'StkKod
-        '
-        Me.StkKod.HeaderText = "Ürün Kodu"
-        Me.StkKod.Name = "StkKod"
-        Me.StkKod.ReadOnly = True
-        '
-        'KurKapl
-        '
-        Me.KurKapl.DataPropertyName = "Kaplama"
-        Me.KurKapl.HeaderText = "Kürsör Kaplama"
-        Me.KurKapl.Name = "KurKapl"
-        Me.KurKapl.ReadOnly = True
-        '
-        'MustUrunKod
-        '
-        Me.MustUrunKod.DataPropertyName = "Kod"
-        Me.MustUrunKod.HeaderText = "Müşteri Ürün Kodu"
-        Me.MustUrunKod.Name = "MustUrunKod"
-        Me.MustUrunKod.ReadOnly = True
-        '
-        'ted1
-        '
-        Me.ted1.DataPropertyName = "Ted_1"
-        Me.ted1.HeaderText = "Ted_1"
-        Me.ted1.Name = "ted1"
-        Me.ted1.ReadOnly = True
-        '
-        'ted2
-        '
-        Me.ted2.DataPropertyName = "Ted_2"
-        Me.ted2.HeaderText = "Ted_2"
-        Me.ted2.Name = "ted2"
-        Me.ted2.ReadOnly = True
-        '
-        'Adet
-        '
-        Me.Adet.DataPropertyName = "Adet"
-        Me.Adet.HeaderText = "Adet"
-        Me.Adet.Name = "Adet"
-        '
-        'Kg
-        '
-        Me.Kg.DataPropertyName = "Kg"
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.NullValue = "--"
-        Me.Kg.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Kg.HeaderText = "Kg"
-        Me.Kg.Name = "Kg"
-        Me.Kg.ReadOnly = True
-        '
-        'KoliNo
-        '
-        Me.KoliNo.DataPropertyName = "KoliNo"
-        Me.KoliNo.HeaderText = "Koli No"
-        Me.KoliNo.Name = "KoliNo"
-        '
-        'BirimGr
-        '
-        Me.BirimGr.DataPropertyName = "BirimGr"
-        Me.BirimGr.HeaderText = "BirimGr"
-        Me.BirimGr.Name = "BirimGr"
-        Me.BirimGr.ReadOnly = True
-        Me.BirimGr.Visible = False
-        '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListedenKaldırToolStripMenuItem, Me.TemizleToolStripMenuItem, Me.ToolStripMenuItem2, Me.BölToolStripMenuItem, Me.KoliNoToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExceleVerToolStripMenuItem1})
@@ -581,6 +510,78 @@ Partial Class Form1
         Me.Label2.Size = New System.Drawing.Size(41, 13)
         Me.Label2.TabIndex = 16
         Me.Label2.Text = "Müşteri"
+        '
+        'SIPNO
+        '
+        Me.SIPNO.DataPropertyName = "SipNo"
+        Me.SIPNO.HeaderText = "Sipariş No"
+        Me.SIPNO.Name = "SIPNO"
+        Me.SIPNO.ReadOnly = True
+        '
+        'StkKod
+        '
+        Me.StkKod.HeaderText = "Ürün Kodu"
+        Me.StkKod.Name = "StkKod"
+        Me.StkKod.ReadOnly = True
+        '
+        'KurKapl
+        '
+        Me.KurKapl.DataPropertyName = "Kaplama"
+        Me.KurKapl.HeaderText = "Kürsör Kaplama"
+        Me.KurKapl.Name = "KurKapl"
+        Me.KurKapl.ReadOnly = True
+        '
+        'MustUrunKod
+        '
+        Me.MustUrunKod.DataPropertyName = "Kod"
+        Me.MustUrunKod.HeaderText = "Müşteri Ürün Kodu"
+        Me.MustUrunKod.Name = "MustUrunKod"
+        Me.MustUrunKod.ReadOnly = True
+        '
+        'ted1
+        '
+        Me.ted1.DataPropertyName = "Ted_1"
+        Me.ted1.HeaderText = "Ted_1"
+        Me.ted1.Name = "ted1"
+        Me.ted1.ReadOnly = True
+        '
+        'ted2
+        '
+        Me.ted2.DataPropertyName = "Ted_2"
+        Me.ted2.HeaderText = "Ted_2"
+        Me.ted2.Name = "ted2"
+        Me.ted2.ReadOnly = True
+        '
+        'Adet
+        '
+        Me.Adet.DataPropertyName = "Adet"
+        Me.Adet.HeaderText = "Adet"
+        Me.Adet.Name = "Adet"
+        '
+        'Kg
+        '
+        Me.Kg.DataPropertyName = "Kg"
+        DataGridViewCellStyle3.Format = "N2"
+        DataGridViewCellStyle3.NullValue = "--"
+        Me.Kg.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Kg.HeaderText = "Kg"
+        Me.Kg.Name = "Kg"
+        Me.Kg.ReadOnly = True
+        '
+        'KoliNo
+        '
+        Me.KoliNo.DataPropertyName = "KoliNo"
+        Me.KoliNo.HeaderText = "Koli No"
+        Me.KoliNo.Name = "KoliNo"
+        Me.KoliNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic
+        '
+        'BirimGr
+        '
+        Me.BirimGr.DataPropertyName = "BirimGr"
+        Me.BirimGr.HeaderText = "BirimGr"
+        Me.BirimGr.Name = "BirimGr"
+        Me.BirimGr.ReadOnly = True
+        Me.BirimGr.Visible = False
         '
         'Form1
         '

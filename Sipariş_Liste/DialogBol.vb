@@ -65,4 +65,40 @@ Public Class DialogBol
         KiloTextBox.Text = TopKg
         KalanAdetTextBox.Text = Adet - TopAd
     End Sub
+
+    Private Sub EşitAdetteBölToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EşitAdetteBölToolStripMenuItem.Click
+        Dim EA As Integer = InputBox("Adet girin", "")
+        Yuvarla(EA)
+    End Sub
+
+    Private Sub EşitKilodaBölToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EşitKilodaBölToolStripMenuItem.Click
+        Dim MaxKg As Single = InputBox("Max Kilo Girin", "")
+        Dim EA As Integer = Math.Floor(MaxKg * 1000 / BrGr)
+        EA = EA - EA Mod 100
+        Yuvarla(EA)
+    End Sub
+    Private Sub Yuvarla(EA As Integer)
+        DataGridView1.Rows.Clear()
+
+        Dim YAdet As Integer = 0
+        Dim KAdet As Integer = Adet
+
+        While YAdet < Adet
+
+            If KAdet > EA Then
+
+                DataGridView1.Rows.Add(EA, EA * BrGr / 1000)
+                YAdet += EA
+                KAdet -= EA
+
+            ElseIf KAdet <= EA And KAdet > 0 Then
+
+                DataGridView1.Rows.Add(KAdet, KAdet * BrGr / 1000)
+                YAdet += KAdet
+                KAdet = 0
+
+            End If
+
+        End While
+    End Sub
 End Class
