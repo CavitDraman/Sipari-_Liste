@@ -4,6 +4,8 @@
     Public AppName As String = Application.ProductName '"BoyutSisConnection"
 
     Private Filter As String
+    Private MaxKg As Single = 25
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim UserName = GetSetting(AppName, "Connection Settings", "User")
@@ -226,7 +228,7 @@
 
     Private Sub KoliNoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles KoliNoToolStripMenuItem.Click
 
-        Dim MaxKg As Single = InputBox("Maximun Koli Ağırlığı", "Ağırlık Limitini Girin", 25)
+        MaxKg = InputBox("Maximun Koli Ağırlığı", "Ağırlık Limitini Girin", MaxKg)
         Dim ToplKg As Single = 0
         Dim KoliNo As Integer = 1
 
@@ -234,18 +236,14 @@
 
         Try
             For Each RW As DataGridViewRow In DataGridView2.Rows
-                Dim Kg As Single = RW.Cells("Kg").Value
+                Dim Kgm As Single = RW.Cells("Kg").Value
 
-                If Kg > MaxKg Then
+                If (ToplKg + Kgm) > MaxKg And ToplKg > 0 Then
                     KoliNo += 1
-                    ToplKg = Kg
-
-                ElseIf (ToplKg + Kg) > MaxKg Then
-                    KoliNo += 1
-                    ToplKg = 0
+                    ToplKg = Kgm
 
                 Else
-                    ToplKg += Kg
+                    ToplKg += Kgm
                 End If
 
                 RW.Cells("KoliNo").Value = CInt(KoliNo)
@@ -345,8 +343,14 @@
 
     Private Sub DataGridView2_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DataGridView2.ColumnHeaderMouseClick
         If e.ColumnIndex = 8 Then
-            DataGridView2.Sort(New RowComparer(SortOrder.Ascending))
+            DataGridView2.Sort(New RowComparer())
         End If
+    End Sub
+
+    Private Sub KoliDataGridView_RowStateChanged(sender As Object, e As DataGridViewRowStateChangedEventArgs) Handles KoliDataGridView.RowStateChanged
+        For Each R As DataGridViewRow In KoliDataGridView.Rows
+            If R.Cells("Kilo").Value > MaxKg Then R.DefaultCellStyle.BackColor = Color.LightSalmon
+        Next
     End Sub
 
 #Region "Sort Metodu"
@@ -355,13 +359,13 @@
 
         Private sortOrderModifier As Integer = 1
 
-        Public Sub New(ByVal sortOrder As SortOrder)
-            If sortOrder = SortOrder.Descending Then
-                sortOrderModifier = -1
-            ElseIf sortOrder = SortOrder.Ascending Then
-                sortOrderModifier = 1
-            End If
-        End Sub
+        'Public Sub New(ByVal sortOrder As SortOrder)
+        '    If sortOrder = SortOrder.Descending Then
+        '        sortOrderModifier = -1
+        '    ElseIf sortOrder = SortOrder.Ascending Then
+        '        sortOrderModifier = 1
+        '    End If
+        'End Sub
 
         Public Function Compare(ByVal x As Object, ByVal y As Object) As Integer _
             Implements System.Collections.IComparer.Compare
@@ -381,22 +385,12 @@
                 CompareResult = 0
             End If
 
-            'String.Compare(
-            '    DataGridViewRow1.Cells(1).Value.ToString(),
-            '    DataGridViewRow2.Cells(1).Value.ToString())
-
-            ' If the Last Names are equal, sort based on the First Name.
-            'If CompareResult = 0 Then
-            '    CompareResult = String.Compare(
-            '        Row1.Cells(0).Value.ToString(),
-            '        Row2.Cells(0).Value.ToString())
-            'End If
-
             Return CompareResult * sortOrderModifier
 
         End Function
     End Class
 #End Region
+
 End Class
 
 

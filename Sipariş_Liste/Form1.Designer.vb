@@ -25,8 +25,8 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -61,6 +61,16 @@ Partial Class Form1
         Me.DataSet1 = New Sipariş_Liste.DataSet1()
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.SIPNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StkKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KurKapl = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MustUrunKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ted1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ted2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Adet = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Kg = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KoliNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BirimGr = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ListedenKaldırToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TemizleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -78,16 +88,6 @@ Partial Class Form1
         Me.SIPARISTableAdapter = New Sipariş_Liste.DataSet1TableAdapters.SIPARISTableAdapter()
         Me.MusteriComboBox = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.SIPNO = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StkKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KurKapl = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MustUrunKod = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ted1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ted2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Adet = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Kg = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KoliNo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.BirimGr = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -393,124 +393,6 @@ Partial Class Form1
         Me.DataGridView2.Size = New System.Drawing.Size(781, 185)
         Me.DataGridView2.TabIndex = 1
         '
-        'ContextMenuStrip1
-        '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListedenKaldırToolStripMenuItem, Me.TemizleToolStripMenuItem, Me.ToolStripMenuItem2, Me.BölToolStripMenuItem, Me.KoliNoToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExceleVerToolStripMenuItem1})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 126)
-        '
-        'ListedenKaldırToolStripMenuItem
-        '
-        Me.ListedenKaldırToolStripMenuItem.Name = "ListedenKaldırToolStripMenuItem"
-        Me.ListedenKaldırToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.ListedenKaldırToolStripMenuItem.Text = "Listeden kaldır"
-        '
-        'TemizleToolStripMenuItem
-        '
-        Me.TemizleToolStripMenuItem.Name = "TemizleToolStripMenuItem"
-        Me.TemizleToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.TemizleToolStripMenuItem.Text = "Temizle"
-        '
-        'ToolStripMenuItem2
-        '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(167, 6)
-        '
-        'BölToolStripMenuItem
-        '
-        Me.BölToolStripMenuItem.Name = "BölToolStripMenuItem"
-        Me.BölToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.BölToolStripMenuItem.Text = "Böl"
-        '
-        'KoliNoToolStripMenuItem
-        '
-        Me.KoliNoToolStripMenuItem.Name = "KoliNoToolStripMenuItem"
-        Me.KoliNoToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
-        Me.KoliNoToolStripMenuItem.Text = "Koli Numaralandır"
-        '
-        'ToolStripMenuItem3
-        '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(167, 6)
-        '
-        'ExceleVerToolStripMenuItem1
-        '
-        Me.ExceleVerToolStripMenuItem1.Name = "ExceleVerToolStripMenuItem1"
-        Me.ExceleVerToolStripMenuItem1.Size = New System.Drawing.Size(170, 22)
-        Me.ExceleVerToolStripMenuItem1.Text = "Excel'e ver"
-        '
-        'KoliDataGridView
-        '
-        Me.KoliDataGridView.BackgroundColor = System.Drawing.SystemColors.Control
-        Me.KoliDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.KoliDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Koli, Me.Kilo})
-        Me.KoliDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.KoliDataGridView.GridColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.KoliDataGridView.Location = New System.Drawing.Point(0, 0)
-        Me.KoliDataGridView.Name = "KoliDataGridView"
-        Me.KoliDataGridView.RowHeadersVisible = False
-        Me.KoliDataGridView.Size = New System.Drawing.Size(214, 185)
-        Me.KoliDataGridView.TabIndex = 2
-        '
-        'Koli
-        '
-        Me.Koli.DataPropertyName = "KoliNo"
-        Me.Koli.HeaderText = "Koli No"
-        Me.Koli.Name = "Koli"
-        '
-        'Kilo
-        '
-        Me.Kilo.DataPropertyName = "NetKg"
-        DataGridViewCellStyle4.Format = "N2"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.Kilo.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Kilo.HeaderText = "Kilo"
-        Me.Kilo.Name = "Kilo"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(902, 36)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 45)
-        Me.Button1.TabIndex = 14
-        Me.Button1.Text = "Seçilenleri Listeye Ekle"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'FIRMABindingSource
-        '
-        Me.FIRMABindingSource.DataMember = "FIRMA"
-        Me.FIRMABindingSource.DataSource = Me.DataSet1
-        '
-        'FIRMATableAdapter
-        '
-        Me.FIRMATableAdapter.ClearBeforeFill = True
-        '
-        'SIPARISTableAdapter
-        '
-        Me.SIPARISTableAdapter.ClearBeforeFill = True
-        '
-        'MusteriComboBox
-        '
-        Me.MusteriComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
-        Me.MusteriComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.MusteriComboBox.DataSource = Me.FIRMABindingSource
-        Me.MusteriComboBox.DisplayMember = "FIRMA_KODU"
-        Me.MusteriComboBox.FormattingEnabled = True
-        Me.MusteriComboBox.Location = New System.Drawing.Point(67, 31)
-        Me.MusteriComboBox.Name = "MusteriComboBox"
-        Me.MusteriComboBox.Size = New System.Drawing.Size(240, 21)
-        Me.MusteriComboBox.TabIndex = 15
-        Me.MusteriComboBox.ValueMember = "FIRMA_ID"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 34)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(41, 13)
-        Me.Label2.TabIndex = 16
-        Me.Label2.Text = "Müşteri"
-        '
         'SIPNO
         '
         Me.SIPNO.DataPropertyName = "SipNo"
@@ -582,6 +464,126 @@ Partial Class Form1
         Me.BirimGr.Name = "BirimGr"
         Me.BirimGr.ReadOnly = True
         Me.BirimGr.Visible = False
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListedenKaldırToolStripMenuItem, Me.TemizleToolStripMenuItem, Me.ToolStripMenuItem2, Me.BölToolStripMenuItem, Me.KoliNoToolStripMenuItem, Me.ToolStripMenuItem3, Me.ExceleVerToolStripMenuItem1})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 126)
+        '
+        'ListedenKaldırToolStripMenuItem
+        '
+        Me.ListedenKaldırToolStripMenuItem.Name = "ListedenKaldırToolStripMenuItem"
+        Me.ListedenKaldırToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.ListedenKaldırToolStripMenuItem.Text = "Listeden kaldır"
+        '
+        'TemizleToolStripMenuItem
+        '
+        Me.TemizleToolStripMenuItem.Name = "TemizleToolStripMenuItem"
+        Me.TemizleToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.TemizleToolStripMenuItem.Text = "Temizle"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(167, 6)
+        '
+        'BölToolStripMenuItem
+        '
+        Me.BölToolStripMenuItem.Name = "BölToolStripMenuItem"
+        Me.BölToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.BölToolStripMenuItem.Text = "Böl"
+        '
+        'KoliNoToolStripMenuItem
+        '
+        Me.KoliNoToolStripMenuItem.Name = "KoliNoToolStripMenuItem"
+        Me.KoliNoToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.KoliNoToolStripMenuItem.Text = "Koli Numaralandır"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(167, 6)
+        '
+        'ExceleVerToolStripMenuItem1
+        '
+        Me.ExceleVerToolStripMenuItem1.Name = "ExceleVerToolStripMenuItem1"
+        Me.ExceleVerToolStripMenuItem1.Size = New System.Drawing.Size(170, 22)
+        Me.ExceleVerToolStripMenuItem1.Text = "Excel'e ver"
+        '
+        'KoliDataGridView
+        '
+        Me.KoliDataGridView.BackgroundColor = System.Drawing.SystemColors.Control
+        Me.KoliDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.KoliDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Koli, Me.Kilo})
+        Me.KoliDataGridView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.KoliDataGridView.GridColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.KoliDataGridView.Location = New System.Drawing.Point(0, 0)
+        Me.KoliDataGridView.MultiSelect = False
+        Me.KoliDataGridView.Name = "KoliDataGridView"
+        Me.KoliDataGridView.RowHeadersVisible = False
+        Me.KoliDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.KoliDataGridView.Size = New System.Drawing.Size(214, 185)
+        Me.KoliDataGridView.TabIndex = 2
+        '
+        'Koli
+        '
+        Me.Koli.DataPropertyName = "KoliNo"
+        Me.Koli.HeaderText = "Koli No"
+        Me.Koli.Name = "Koli"
+        '
+        'Kilo
+        '
+        Me.Kilo.DataPropertyName = "NetKg"
+        DataGridViewCellStyle4.Format = "N2"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.Kilo.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Kilo.HeaderText = "Kilo"
+        Me.Kilo.Name = "Kilo"
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(902, 36)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 45)
+        Me.Button1.TabIndex = 14
+        Me.Button1.Text = "Seçilenleri Listeye Ekle"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'FIRMABindingSource
+        '
+        Me.FIRMABindingSource.DataMember = "FIRMA"
+        Me.FIRMABindingSource.DataSource = Me.DataSet1
+        '
+        'FIRMATableAdapter
+        '
+        Me.FIRMATableAdapter.ClearBeforeFill = True
+        '
+        'SIPARISTableAdapter
+        '
+        Me.SIPARISTableAdapter.ClearBeforeFill = True
+        '
+        'MusteriComboBox
+        '
+        Me.MusteriComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append
+        Me.MusteriComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.MusteriComboBox.DataSource = Me.FIRMABindingSource
+        Me.MusteriComboBox.DisplayMember = "FIRMA_KODU"
+        Me.MusteriComboBox.FormattingEnabled = True
+        Me.MusteriComboBox.Location = New System.Drawing.Point(67, 31)
+        Me.MusteriComboBox.Name = "MusteriComboBox"
+        Me.MusteriComboBox.Size = New System.Drawing.Size(240, 21)
+        Me.MusteriComboBox.TabIndex = 15
+        Me.MusteriComboBox.ValueMember = "FIRMA_ID"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(12, 34)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(41, 13)
+        Me.Label2.TabIndex = 16
+        Me.Label2.Text = "Müşteri"
         '
         'Form1
         '
